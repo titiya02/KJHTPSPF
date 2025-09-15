@@ -37,6 +37,8 @@ void ACPP_LauncherProjectile::OnProjectileBeginOverlap
 )
 {
 	auto Object = OtherComp->GetCollisionObjectType();
+	/*UE_LOG(TestKJH, Log, TEXT("Actor : %s"), *OtherActor->GetName());
+	UE_LOG(TestKJH, Log, TEXT("ObjectType : %s"), *EnumToFName(Object).ToString());*/
 	if (Object == ECC_WorldStatic && OtherActor != Owner)
 		Destroy();
 	else if (Cast<APawn>(OtherActor) && OtherActor != GetInstigator())

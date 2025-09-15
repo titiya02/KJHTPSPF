@@ -53,6 +53,8 @@ void ACPP_AIBossController::SetStartLocation(FVector Location)
 void ACPP_AIBossController::OnUnPossess()
 {
 	Super::OnUnPossess();
-	Cast<ACPP_PlayerController>(Target->GetInstigatorController())->GetCanvas()->UpdateBossHealthBarVisibility(false);
+	if(Target->GetInstigatorController() != nullptr)
+		if(auto TargetController = Cast<ACPP_PlayerController>(Target->GetInstigatorController()))
+			TargetController->GetCanvas()->UpdateBossHealthBarVisibility(false);
 	Destroy();
 }

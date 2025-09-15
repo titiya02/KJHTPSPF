@@ -19,6 +19,13 @@ void ACPP_BossArea::BeginPlay()
 	BossAreaBox->OnComponentEndOverlap.AddDynamic(this, &ThisClass::OnBossAreaBoxEndOverlap);
 }
 
+void ACPP_BossArea::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	BossAreaBox->OnComponentBeginOverlap.RemoveDynamic(this, &ThisClass::OnBossAreaBoxBeginOverlap);
+	BossAreaBox->OnComponentEndOverlap.RemoveDynamic(this, &ThisClass::OnBossAreaBoxEndOverlap);
+}
+
 void ACPP_BossArea::OnBossAreaBoxBeginOverlap(UPrimitiveComponent* OverlappedComponent,
 	AActor* OtherActor,
 	UPrimitiveComponent* OtherComp,

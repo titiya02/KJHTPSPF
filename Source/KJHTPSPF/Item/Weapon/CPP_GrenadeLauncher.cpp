@@ -15,7 +15,8 @@ void ACPP_GrenadeLauncher::FireBullet()
 	FVector StartLocation = SkeletalMesh->GetSocketLocation("MuzzleFlash");
 	FRotator ForwardRotator = UKismetMathLibrary::FindLookAtRotation(StartLocation, GetProjectileDestination());
 
-	auto* const Projectile = GetWorld()->SpawnActor<AActor>(BPBulletClass, StartLocation, ForwardRotator, SpawnParameters);
+	auto* Projectile = GetWorld()->SpawnActor<AActor>(BPBulletClass, StartLocation, ForwardRotator, SpawnParameters);
+	Projectile->Rename();
 }
 
 void ACPP_GrenadeLauncher::BeginActionBStarted()

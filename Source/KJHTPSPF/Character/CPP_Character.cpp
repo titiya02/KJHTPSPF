@@ -63,7 +63,8 @@ float ACPP_Character::TakeDamage(float DamageAmount, FDamageEvent const& DamageE
 	//UE_LOG(TestKJH, Log, TEXT("Damageda : %f"), x);
 	//UE_LOG(TestKJH, Log, TEXT("Damaged : %f"), DamageAmount);
 	//UE_LOG(TestKJH, Log, TEXT("Character : %s"), *GetName());
-	if (this->GetGenericTeamId() == Cast<ACPP_Character>(EventInstigator->GetPawn())->GetGenericTeamId()) return 0;
+	if(EventInstigator->GetPawn() != nullptr)
+		if (this->GetGenericTeamId() == Cast<ACPP_Character>(EventInstigator->GetPawn())->GetGenericTeamId()) return 0;
 
 	if (CharacterState == ECharacterState::Died) return -1;
 
