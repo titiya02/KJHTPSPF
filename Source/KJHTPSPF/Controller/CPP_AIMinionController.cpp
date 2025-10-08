@@ -45,10 +45,9 @@ ACPP_AIMinionController::ACPP_AIMinionController()
 	AIPerception->SetDominantSense(SenseSight->GetSenseImplementation());
 }
 
-void ACPP_AIMinionController::BackToPatrol(FVector Location)
+void ACPP_AIMinionController::BackToPatrol()
 {
 	bBackToPatrol = true;
-	returnLocation = Location;
 	Target = nullptr;
 }
 
@@ -64,8 +63,12 @@ void ACPP_AIMinionController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (bBackToPatrol)
 	{
-		if ((returnLocation - GetPawn()->GetActorLocation()).Length() < AllowLength)
+		BackToPatrolTime += DeltaTime;
+		if (BackToPatrolTime > 3)
+		{
+			BackToPatrolTime = 0;
 			bBackToPatrol = false;
+		}
 	}
 }
 
@@ -76,8 +79,8 @@ void ACPP_AIMinionController::OnPerceptionInfoUpdate(const FActorPerceptionUpdat
 	FName Sensename = Info.Stimulus.Type.Name;
 
 	if (PerceivedActor == nullptr) return;
-	/*UE_LOG(TestKJH, Log, TEXT("Sense : %s"), *Sensename.ToString());
-	UE_LOG(TestKJH, Log, TEXT("PerceptionActor : %s"), *PerceivedActor->GetName());*/
+	/*UE_LOG(TestKJH, Log, TEXT("Sense : %s"), *Sensename.ToString());*/
+	UE_LOG(TestKJH, Log, TEXT("PerceptionActor : %s"), *PerceivedActor->GetName());
 
 	if (PerceivedActor->Implements<UGenericTeamAgentInterface>())
 	{
@@ -86,7 +89,7 @@ void ACPP_AIMinionController::OnPerceptionInfoUpdate(const FActorPerceptionUpdat
 			Target = PerceivedActor;
 			Cast<ACPP_AICharacter>(GetPawn())->SetLifeGaugeVisibility(true);
 		}
-		//UE_LOG(TestKJH, Log, TEXT("PerceptionActor : %s"), *PerceivedActor->GetName());
+		UE_LOG(TestKJH, Log, TEXT("PerceptionActor : %s"), *PerceivedActor->GetName());
 	}
 	else
 	{
@@ -97,7 +100,7 @@ void ACPP_AIMinionController::OnPerceptionInfoUpdate(const FActorPerceptionUpdat
 				Target = PerceivedActor;
 				Cast<ACPP_AICharacter>(GetPawn())->SetLifeGaugeVisibility(true);
 			}
-			//UE_LOG(TestKJH, Log, TEXT("PerceptionActor : %s"), *PerceivedActor->GetName());
+			UE_LOG(TestKJH, Log, TEXT("PerceptionActor : %s"), *PerceivedActor->GetName());
 		}
 	}
 

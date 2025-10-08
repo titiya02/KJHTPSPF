@@ -24,7 +24,6 @@ public:
 	void SetController(AController* OnwerController);
 	
 	bool GetIsAiming() const { return bIsAiming; };
-	bool GetIsDriving() const { return bIsDriving; };
 	bool GetRunning() const { return bIsRun; };
 
 	void RunTrigger();
@@ -151,9 +150,6 @@ protected:
 
 	UPROPERTY(VisibleDefaultsOnly)
 	bool bIsWalkingFront = false;
-
-	UPROPERTY(VisibleDefaultsOnly)
-	bool bIsDriving = false;
 
 	UPROPERTY(VisibleDefaultsOnly)
 	bool bIsAiming = false;

@@ -46,21 +46,21 @@ void ACPP_Grenade::Tick(float Deltatime)
 	Super::Tick(Deltatime);
 	if(bIsCharged)
 	{
-		testTime += Deltatime;
+		ChargeTime += Deltatime;
 		if (!bIsFlash)
 		{
-			if (testTime >= 5)
+			if (ChargeTime >= 5)
 			{
 				Explosive();
-				testTime = 0;
+				ChargeTime = 0;
 			}
 		}
 		else
 		{
-			if (testTime >= 3)
+			if (ChargeTime >= 3)
 			{
 				Explosive();
-				testTime = 0;
+				ChargeTime = 0;
 			}
 		}
 		

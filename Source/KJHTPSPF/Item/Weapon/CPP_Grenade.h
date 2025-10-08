@@ -43,5 +43,5 @@ protected:
 	
 	double ExplosiveRadius = 700;
 
-	double testTime = 0;
+	double ChargeTime = 0;
 };

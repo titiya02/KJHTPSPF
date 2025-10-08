@@ -369,8 +369,6 @@ void ACPP_PlayerController::ApplyRecoil()
 	float Yaw = LeftRecoilYaw * RecoilDeltaTime;
 	HandlingTime += RecoilDeltaTime;
 
-	/*UE_LOG(TestKJH, Log, TEXT("Pitch : %f"), Pitch);
-	UE_LOG(TestKJH, Log, TEXT("Yaw : %f"), Yaw);*/
 	AddPitchInput(-Pitch);
 	AddYawInput(Yaw);
 

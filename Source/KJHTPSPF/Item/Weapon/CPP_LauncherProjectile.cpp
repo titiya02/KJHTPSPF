@@ -70,7 +70,7 @@ void ACPP_LauncherProjectile::Explode()
 		GetInstigatorController()
 	);
 
-	DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosiveRadius, 10, FColor::Red, false, 5);
+	//DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosiveRadius, 10, FColor::Red, false, 5);
 
 	GetWorld()->SpawnActor<AActor>(EffectClass, GetActorLocation(), FRotator());
 }

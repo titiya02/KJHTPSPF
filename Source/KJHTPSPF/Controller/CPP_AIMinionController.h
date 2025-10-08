@@ -19,7 +19,7 @@ class KJHTPSPF_API ACPP_AIMinionController : public ACPP_AIController
 public:
 	ACPP_AIMinionController();
 
-	void BackToPatrol(FVector Location);
+	void BackToPatrol();
 
 	bool GetbPatrol() const { return bBackToPatrol; };
 	double GetTraceDistance() const { return TraceDistance; };
@@ -54,5 +54,5 @@ protected:
 	double TraceDistance = 1500;
 
 	bool bBackToPatrol = false;
-	FVector returnLocation;
+	float BackToPatrolTime = 0.0;
 };

@@ -13,7 +13,8 @@ EBTNodeResult::Type UTK_ReturnPatrol::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	auto AIController = Cast<ACPP_AIMinionController>(OwnerComp.GetAIOwner());
 	auto Blackboard = OwnerComp.GetBlackboardComponent();
 
-	AIController->BackToPatrol(Blackboard->GetValueAsVector(ReturnLocationKey.SelectedKeyName));
+	//AIController->BackToPatrol(Blackboard->GetValueAsVector(ReturnLocationKey.SelectedKeyName));
+	AIController->BackToPatrol();
 	
 	Blackboard->ClearValue(ReturnLocationKey.SelectedKeyName);
 	Blackboard->ClearValue(BlackboardKey.SelectedKeyName);
